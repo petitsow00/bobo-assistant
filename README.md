@@ -1,21 +1,40 @@
 # BOBO - Assistant IA Personnel
 
-BOBO est un assistant IA personnel créé pour Mamadou Sow.
+BOBO est un assistant IA personnel créé pour Mamadou Sow. Il aide dans tous les domaines du développement logiciel et de l'automatisation.
 
-## Fonctionnalités
+## Langages supportés
 
-- Aide au développement logiciel
-- Support pour Python, JavaScript, HTML, CSS, SQL
-- Assistance pour VS Code et Terminal macOS
-- Aide avec Git et GitHub
-- Support WordPress
-- Aide en intelligence artificielle
-- Automatisations (Zapier, Make, n8n)
-- Bases de données (Firebase, Supabase)
-- Electron et Flutter
-- Cybersécurité défensive
-- Administration système
-- Gestion des API
+| Langage | Support |
+|---------|---------|
+| Python | Oui |
+| JavaScript | Oui |
+| HTML/CSS | Oui |
+| SQL | Oui |
+| Dart (Flutter) | Oui |
+
+## Technologies supportées
+
+| Catégorie | Technologies |
+|-----------|--------------|
+| **Frameworks** | Flutter, Electron |
+| **CMS** | WordPress |
+| **Bases de données** | Firebase, Supabase, SQL |
+| **Automatisation** | Zapier, Make, n8n |
+| **DevOps** | Git, GitHub, Terminal |
+| **Sécurité** | Cybersécurité défensive |
+| **API** | REST, GraphQL |
+
+## Ce que BOBO peut faire
+
+- Écrire et corriger du code dans plusieurs langages
+- Expliquer des concepts de programmation simplement
+- Aider avec les commandes Terminal
+- Créer des automatisations
+- Configurer des bases de données
+- Conseiller sur la sécurité
+- Gérer des projets Git/GitHub
+- Développer des applications mobiles (Flutter)
+- Créer des applications desktop (Electron)
 
 ## Installation
 
@@ -58,12 +77,14 @@ bobo
 
 ## Commandes
 
-- `quit` ou `q` : Quitter BOBO
-- `clear` : Effacer l'écran
+| Commande | Action |
+|----------|--------|
+| `quit` ou `q` | Quitter BOBO |
+| `clear` | Effacer l'écran |
 
 ## Auteur
 
-Mamadou Bobo Sow - [@petisow00](https://github.com/petisow00)
+Mamadou Bobo Sow - [@petitsow00](https://github.com/petitsow00)
 
 ## Licence
 
