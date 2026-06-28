@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
 BOBO - Assistant IA Personnel de Mamadou Sow
+Propulsé par Claude (Anthropic)
 """
 
-from google import genai
-from google.genai import types
+import anthropic
 import os
 
 # Configuration
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 
-if not GEMINI_API_KEY:
-    print("Erreur : Clé API Gemini non trouvée.")
-    print("Ajoutez-la avec : export GEMINI_API_KEY='votre-clé'")
+if not ANTHROPIC_API_KEY:
+    print("Erreur : Clé API Anthropic non trouvée.")
+    print("Ajoutez-la avec : export ANTHROPIC_API_KEY='votre-clé'")
     exit(1)
 
 # Prompt système de BOBO
@@ -90,6 +90,7 @@ def clear_screen():
 def print_header():
     print("=" * 50)
     print("  BOBO - Assistant IA Personnel de Mamadou Sow")
+    print("  Propulsé par Claude (Anthropic)")
     print("=" * 50)
     print("  Tapez 'quit' ou 'q' pour quitter")
     print("  Tapez 'clear' pour effacer l'écran")
@@ -102,17 +103,17 @@ def main():
 
     # Initialiser le client
     try:
-        client = genai.Client(api_key=GEMINI_API_KEY)
+        client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     except Exception as e:
         print(f"Erreur de connexion : {e}")
-        print("Vérifiez votre clé API Gemini.")
+        print("Vérifiez votre clé API Anthropic.")
         return
 
     # Historique de conversation
     history = []
 
     print("BOBO: Bonjour Mamadou ! Je suis BOBO, ton assistant personnel.")
-    print("      Comment puis-je t'aider aujourd'hui ?")
+    print("      Propulsé par Claude. Comment puis-je t'aider aujourd'hui ?")
     print()
 
     while True:
@@ -133,30 +134,27 @@ def main():
                 continue
 
             # Ajouter le message à l'historique
-            history.append(types.Content(
-                role="user",
-                parts=[types.Part(text=user_input)]
-            ))
+            history.append({
+                "role": "user",
+                "content": user_input
+            })
 
-            # Envoyer le message à Gemini
-            response = client.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=history,
-                config=types.GenerateContentConfig(
-                    system_instruction=SYSTEM_PROMPT,
-                    temperature=0.7,
-                    max_output_tokens=2048,
-                )
+            # Envoyer le message à Claude
+            response = client.messages.create(
+                model="claude-sonnet-4-20250514",  # Modèle Claude Sonnet
+                max_tokens=2048,
+                system=SYSTEM_PROMPT,
+                messages=history
             )
 
             # Récupérer la réponse
-            assistant_message = response.text
+            assistant_message = response.content[0].text
 
             # Ajouter la réponse à l'historique
-            history.append(types.Content(
-                role="model",
-                parts=[types.Part(text=assistant_message)]
-            ))
+            history.append({
+                "role": "assistant",
+                "content": assistant_message
+            })
 
             print()
             print(f"BOBO: {assistant_message}")
@@ -165,14 +163,12 @@ def main():
         except KeyboardInterrupt:
             print("\n\nBOBO: Au revoir Mamadou ! À bientôt !")
             break
+        except anthropic.APIError as e:
+            print(f"\nErreur API: {e}")
+            print("Vérifiez votre crédit sur console.anthropic.com\n")
         except Exception as e:
-            error_msg = str(e)
-            if "quota" in error_msg.lower() or "429" in error_msg:
-                print("\n⚠️  Limite API atteinte. Attendez quelques secondes et réessayez.")
-                print("    Ou créez une nouvelle clé sur: https://aistudio.google.com/apikey\n")
-            else:
-                print(f"\nErreur: {e}")
-                print("Réessayez votre question.\n")
+            print(f"\nErreur: {e}")
+            print("Réessayez votre question.\n")
 
 if __name__ == "__main__":
     main()
