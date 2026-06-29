@@ -1,6 +1,6 @@
 # BOBO - Assistant IA Personnel
 
-BOBO est un assistant IA personnel créé pour Mamadou Sow. Il aide dans tous les domaines du développement logiciel et de l'automatisation.
+BOBO est un assistant IA personnel créé pour Mamadou Sow. Propulsé par Claude (Anthropic), il aide dans tous les domaines du développement logiciel et de l'automatisation.
 
 ## Langages supportés
 
@@ -36,44 +36,93 @@ BOBO est un assistant IA personnel créé pour Mamadou Sow. Il aide dans tous le
 - Développer des applications mobiles (Flutter)
 - Créer des applications desktop (Electron)
 
-## Installation
+---
+
+## Installation Windows
+
+### Prérequis
+
+1. **Python 3.12+** : [python.org/downloads](https://www.python.org/downloads/)
+   - Cochez "Add Python to PATH" lors de l'installation
+2. **Clé API Anthropic** : [console.anthropic.com](https://console.anthropic.com)
+
+### Installation automatique
+
+1. Téléchargez ce projet (Code > Download ZIP)
+2. Extrayez le dossier
+3. Clic droit sur `install-windows.ps1` > "Exécuter avec PowerShell"
+4. Suivez les instructions
+
+### Installation manuelle
+
+1. Ouvrez PowerShell et installez les dépendances :
+```powershell
+pip install anthropic
+```
+
+2. Configurez votre clé API :
+```powershell
+setx ANTHROPIC_API_KEY "sk-ant-votre-cle-api"
+```
+
+3. Redémarrez PowerShell
+
+### Utilisation (Windows)
+
+Double-cliquez sur `bobo.bat` ou tapez dans PowerShell :
+```powershell
+python bobo.py
+```
+
+---
+
+## Installation macOS
 
 ### Prérequis
 
 - Python 3.12+
-- Une clé API Gemini (gratuite sur [aistudio.google.com](https://aistudio.google.com/apikey))
+- Clé API Anthropic : [console.anthropic.com](https://console.anthropic.com)
 
-### Installation des dépendances
+### Installation
 
+1. Installez les dépendances :
 ```bash
-pip3 install google-genai
+pip3 install anthropic
 ```
 
-### Configuration
-
-Ajoutez votre clé API Gemini dans votre fichier `~/.zshrc` :
-
+2. Configurez votre clé API dans `~/.zshrc` :
 ```bash
-export GEMINI_API_KEY="votre-clé-api"
+export ANTHROPIC_API_KEY="sk-ant-votre-cle-api"
 ```
 
-## Utilisation
+3. Rechargez le terminal :
+```bash
+source ~/.zshrc
+```
+
+### Utilisation (macOS)
 
 ```bash
 python3 bobo.py
 ```
 
-Ou ajoutez un alias dans `~/.zshrc` :
-
+Ou créez un alias dans `~/.zshrc` :
 ```bash
 alias bobo="python3 ~/projets/bobo-assistant/bobo.py"
 ```
 
-Puis lancez simplement :
-
+Puis lancez :
 ```bash
 bobo
 ```
+
+---
+
+## Installation Linux
+
+Suivez les mêmes étapes que macOS, en remplaçant `~/.zshrc` par `~/.bashrc` si nécessaire.
+
+---
 
 ## Commandes
 
