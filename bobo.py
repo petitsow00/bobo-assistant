@@ -141,7 +141,7 @@ def main():
 
             # Envoyer le message à Claude
             response = client.messages.create(
-                model="claude-sonnet-4-20250514",  # Modèle Claude Sonnet
+                model="claude-haiku-4-5-20251001",  # Modèle Claude Haiku 4.5 (économique)
                 max_tokens=2048,
                 system=SYSTEM_PROMPT,
                 messages=history
